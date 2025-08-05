@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const getMovie = createAsyncThunk("movie/getMovies", async () => {
+export const getMovie = createAsyncThunk("movie/getMovies", async (title) => {
   const res = await axios.get(
-    "https://www.omdbapi.com/?apikey=6007e8be&s=star-wars&type=movie&page=1"
+    `https://www.omdbapi.com/?apikey=6007e8be&s=${title}&type=movie&page=1`
   );
   return res.data;
 });
