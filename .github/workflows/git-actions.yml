@@ -1,0 +1,29 @@
+name: FilmSpot
+run-name: ${{ github.actor }} init rep
+on:
+  push:
+    branches:
+      - main
+      - dev
+jobs:
+  test-build-deploy:
+    if: github.ref != 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: action/setup-node@3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test Project
+        run: npm test
+
+      - name: Build project
+        run: npm run build
