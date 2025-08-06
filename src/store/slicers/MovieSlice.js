@@ -2,9 +2,15 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const getMovie = createAsyncThunk("movie/getMovies", async (title) => {
+  if (title === null) {
+    throw new Error("Пустое значение");
+  }
   const res = await axios.get(
     `https://www.omdbapi.com/?apikey=6007e8be&s=${title}&type=movie&page=1`
   );
+  if (res.data.Error) {
+    throw new Error("Ошибка!");
+  }
   return res.data;
 });
 
@@ -12,13 +18,27 @@ const movieSlice = createSlice({
   name: "movie",
   initialState: {
     moviesList: [],
-    favourite: [],
+    favourites: [],
     status: "idle",
-    filter: "all" | "favourite" | "recent",
+    filters: ["all", "favourite", "recent"],
   },
   reducers: {
     addToFavourite(state, action) {
-      state.favourite.push(action.payload);
+      if (
+        state.favourites.findIndex(
+          (el) => el.imdbID === action.payload.imdbID
+        ) < 0
+      ) {
+        state.favourites.push(action.payload);
+      } else {
+        return;
+      }
+    },
+    deleteFromFavourite(state, action) {
+      state.favourites.splice(
+        state.favourites.findIndex((el) => el.imdbID === action.payload.imdbID),
+        1
+      );
     },
   },
   extraReducers: (builder) => {
@@ -36,5 +56,5 @@ const movieSlice = createSlice({
   },
 });
 
-export const { addToFavourite } = movieSlice.actions;
+export const { addToFavourite, deleteFromFavourite } = movieSlice.actions;
 export default movieSlice.reducer;
