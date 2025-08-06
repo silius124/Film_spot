@@ -40,6 +40,9 @@ const movieSlice = createSlice({
         1
       );
     },
+    clearMovieList(state) {
+      state.moviesList = [];
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -56,5 +59,6 @@ const movieSlice = createSlice({
   },
 });
 
-export const { addToFavourite, deleteFromFavourite } = movieSlice.actions;
+export const { addToFavourite, deleteFromFavourite, clearMovieList } =
+  movieSlice.actions;
 export default movieSlice.reducer;
