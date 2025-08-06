@@ -64,10 +64,13 @@ function App() {
               movies.map((movie) => {
                 return (
                   <li key={movie.imdbID}>
-                    {movie.Title} был выпущен в {movie.Year}{" "}
-                    <button onClick={() => handleClickAddFavourite(movie)}>
-                      В избранное
-                    </button>
+                    <div className="card">
+                      <img src={movie.Poster} alt={movie.title} />
+                      {movie.Title} был выпущен в {movie.Year}{" "}
+                      <button onClick={() => handleClickAddFavourite(movie)}>
+                        В избранное
+                      </button>
+                    </div>
                   </li>
                 );
               })}
@@ -75,10 +78,13 @@ function App() {
               favourites.map((movie) => {
                 return (
                   <li key={movie.imdbID}>
-                    {movie.Title} был выпущен в {movie.Year}{" "}
-                    <button onClick={() => handleClickDeleteFavourite(movie)}>
-                      Удалить из избранного
-                    </button>
+                    <div className="card">
+                      <img src={movie.Poster} alt={movie.title} />
+                      {movie.Title} был выпущен в {movie.Year}{" "}
+                      <button onClick={() => handleClickDeleteFavourite(movie)}>
+                        Удалить из избранного
+                      </button>
+                    </div>
                   </li>
                 );
               })}
