@@ -18,7 +18,7 @@ function Header({ changeFilter }) {
     dispatch(clearMovieList());
   }
   return (
-    <header className="header">
+    <header className="header" data-testid="header">
       <h1>Film Spot</h1>{" "}
       <input
         type="text"

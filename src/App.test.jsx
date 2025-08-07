@@ -11,6 +11,6 @@ describe("Test App", () => {
         <App />
       </Provider>
     );
-    expect(screen.getByTestId("divApp")).toBeInTheDocument();
+    expect(screen.getByTestId("header")).toBeInTheDocument();
   });
 });
