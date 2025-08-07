@@ -1,23 +1,45 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const getMovie = createAsyncThunk("movie/getMovies", async (title) => {
-  if (title === null) {
-    throw new Error("Пустое значение");
+export const getMovies = createAsyncThunk(
+  "movie/getMovies",
+  async ({ title, index }) => {
+    if (title === null) {
+      throw new Error("Пустое значение");
+    }
+    const res = await axios.get(
+      `https://www.omdbapi.com/?apikey=6007e8be&s=${title}&type=movie&page=${index}`
+    );
+    console.log(index);
+    if (res.data.Error) {
+      throw new Error("Ошибка!");
+    }
+    return res.data;
   }
-  const res = await axios.get(
-    `https://www.omdbapi.com/?apikey=6007e8be&s=${title}&type=movie&page=1`
-  );
-  if (res.data.Error) {
-    throw new Error("Ошибка!");
+);
+
+export const getMovie = createAsyncThunk(
+  "movie/getMovie",
+  async ({ title }) => {
+    if (title === null) {
+      throw new Error("Пустое значение");
+    }
+    const res = await axios.get(
+      `http://www.omdbapi.com/?apikey=6007e8be&t=${title}&type=movie`
+    );
+    if (res.data.Error) {
+      throw new Error("Ошибка!");
+    }
+    return res.data;
   }
-  return res.data;
-});
+);
 
 const movieSlice = createSlice({
   name: "movie",
   initialState: {
     moviesList: [],
+    movie: {},
+    recent: [],
     favourites: [],
     status: "idle",
     filters: ["all", "favourite", "recent"],
@@ -46,15 +68,22 @@ const movieSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(getMovies.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getMovies.fulfilled, (state, action) => {
+        state.status = "successed";
+        state.moviesList = [...action.payload.Search];
+      })
+      .addCase(getMovies.rejected, (state) => {
+        state.status = "failed";
+      })
       .addCase(getMovie.pending, (state) => {
         state.status = "loading";
       })
       .addCase(getMovie.fulfilled, (state, action) => {
         state.status = "successed";
-        state.moviesList = [...action.payload.Search];
-      })
-      .addCase(getMovie.rejected, (state) => {
-        state.status = "failed";
+        state.movie = { ...action.payload };
       });
   },
 });

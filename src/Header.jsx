@@ -1,12 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
-import { clearMovieList, getMovie } from "./store/slicers/MovieSlice";
+import { clearMovieList, getMovies } from "./store/slicers/MovieSlice";
 
 function Header({ changeFilter }) {
   const dispatch = useDispatch();
   const filters = useSelector((state) => state.movies.filters);
   function handleChangeInp(inp) {
     setTimeout(
-      () => dispatch(getMovie(inp.split("").length === 0 ? null : inp)),
+      () =>
+        dispatch(
+          getMovies({
+            title: inp.split("").length === 0 ? null : inp,
+            index: "1",
+          })
+        ),
       500
     );
     dispatch(clearMovieList());
