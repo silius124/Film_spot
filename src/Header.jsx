@@ -18,17 +18,19 @@ function Header({ changeFilter }) {
     dispatch(clearMovieList());
   }
   return (
-    <>
-      <div data-testid="divApp">Привет. Введи фильм</div>{" "}
+    <header className="header">
+      <h1>Film Spot</h1>{" "}
       <input
         type="text"
         onChange={(e) => handleChangeInp(e.target.value)}
         autoComplete="true"
+        className="input_movie"
       />{" "}
       <select
         name="filter"
         id="filter"
         onChange={(e) => changeFilter(e.target.value)}
+        className="select_filter"
       >
         {filters.map((filter, index) => (
           <option value={filter} key={index}>
@@ -36,7 +38,7 @@ function Header({ changeFilter }) {
           </option>
         ))}
       </select>
-    </>
+    </header>
   );
 }
 

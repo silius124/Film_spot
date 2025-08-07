@@ -13,14 +13,11 @@ function Movies({ filter }) {
   const favourites = useSelector((store) => store.movies.favourites);
   function handleClickAddFavourite(movie) {
     dispatch(addToFavourite(movie));
-    console.log(favourites);
   }
   function handleClickDeleteFavourite(movie) {
     dispatch(deleteFromFavourite(movie));
-    console.log(favourites);
   }
   function handleClickToMovie(title) {
-    console.log("ПРИВЕЕЕЕТ");
     dispatch(getMovie({ title }));
     navigate("/movie-info");
   }

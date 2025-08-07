@@ -1,17 +1,35 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToFavourite,
+  deleteFromFavourite,
+} from "./store/slicers/MovieSlice";
 
 function Movie() {
+  const dispatch = useDispatch();
   const movie = useSelector((state) => state.movies.movie);
 
   return (
-    <div>
-      <img src={movie.Poster} alt="" />
-      <div>
-        <h2>{movie.Title}</h2>
-        <p></p>
-        <button>Добавить в избранное</button>
-        <button>Удалить из избранного</button>
-        <p>{movie.Plot}</p>
+    <div className="main">
+      <div className="head_movie">
+        <img src={movie.Poster} alt="" />
+        <div>
+          <h2>{movie.Title}</h2>
+          <p>{movie.Plot}</p>
+          <button
+            className="btn add_to_favourite"
+            onClick={() => dispatch(addToFavourite(movie))}
+          >
+            Добавить в избранное
+          </button>
+          <button
+            className="btn delete_from_favourite"
+            onClick={() => dispatch(deleteFromFavourite(movie))}
+          >
+            Удалить из избранного
+          </button>
+        </div>
+      </div>
+      <div className="main_content">
         <h3>О фильме</h3>
         <div>
           <label htmlFor="">Жанр: </label>
