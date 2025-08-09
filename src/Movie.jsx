@@ -7,48 +7,55 @@ import {
 function Movie() {
   const dispatch = useDispatch();
   const movie = useSelector((state) => state.movies.movie);
-
+  const status = useSelector((store) => store.movies.status);
+  console.log(movie);
   return (
     <div className="main">
-      <div className="head_movie">
-        <img src={movie.Poster} alt="" />
-        <div>
-          <h2>{movie.Title}</h2>
-          <p>{movie.Plot}</p>
-          <button
-            className="btn add_to_favourite"
-            onClick={() => dispatch(addToFavourite(movie))}
-          >
-            Добавить в избранное
-          </button>
-          <button
-            className="btn delete_from_favourite"
-            onClick={() => dispatch(deleteFromFavourite(movie))}
-          >
-            Удалить из избранного
-          </button>
-        </div>
-      </div>
-      <div className="main_content">
-        <h3>О фильме</h3>
-        <div>
-          <label htmlFor="">Жанр: </label>
-          <span>{movie.Genre}</span>
-          <label htmlFor="">Страна: </label>
-          <span>{movie.Country}</span>
-          <label htmlFor="">Год выпуска: </label>
-          <span>{movie.Year}</span>
-          <label htmlFor="">Рейтинги: </label>
-          {movie.Ratings.map((rat) => (
-            <>
-              <label htmlFor="">{rat.Source}</label>
-              <span>{rat.Value}</span>
-            </>
-          ))}
-          <label htmlFor="">Звезды: </label>
-          <span>{movie.Actors}</span>
-        </div>
-      </div>
+      {status === "loading" && <div>Загрузка...</div>}
+      {status === "successed" && (
+        <>
+          <div className="head_movie">
+            <img src={movie.Poster} alt="" />
+            <div>
+              <h2>{movie.Title}</h2>
+
+              <p>{movie.Plot}</p>
+              <button
+                className="btn add_to_favourite"
+                onClick={() => dispatch(addToFavourite(movie))}
+              >
+                Добавить в избранное
+              </button>
+              <button
+                className="btn delete_from_favourite"
+                onClick={() => dispatch(deleteFromFavourite(movie))}
+              >
+                Удалить из избранного
+              </button>
+            </div>
+          </div>
+          <div className="main_content">
+            <h3>О фильме</h3>
+            <div>
+              <label htmlFor="">Жанр: </label>
+              <span>{movie.Genre}</span>
+              <label htmlFor="">Страна: </label>
+              <span>{movie.Country}</span>
+              <label htmlFor="">Год выпуска: </label>
+              <span>{movie.Year}</span>
+              <label htmlFor="">Рейтинги: </label>
+              {movie.Ratings.map((rat) => (
+                <>
+                  <label htmlFor="">{rat.Source}</label>
+                  <span>{rat.Value}</span>
+                </>
+              ))}
+              <label htmlFor="">Звезды: </label>
+              <span>{movie.Actors}</span>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

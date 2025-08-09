@@ -10,6 +10,7 @@ function Movies({ filter }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const movies = useSelector((store) => store.movies.moviesList);
+  const status = useSelector((store) => store.movies.status);
   const favourites = useSelector((store) => store.movies.favourites);
   function handleClickAddFavourite(movie) {
     dispatch(addToFavourite(movie));
@@ -19,7 +20,7 @@ function Movies({ filter }) {
   }
   function handleClickToMovie(title) {
     dispatch(getMovie({ title }));
-    navigate("/movie-info");
+    if (status === "successed") navigate("/movie-info");
   }
   return (
     <>
