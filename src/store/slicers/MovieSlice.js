@@ -25,7 +25,7 @@ export const getMovie = createAsyncThunk(
       throw new Error("Пустое значение");
     }
     const res = await axios.get(
-      `http://www.omdbapi.com/?apikey=6007e8be&t=${title}&type=movie`
+      `https://www.omdbapi.com/?apikey=6007e8be&t=${title}&type=movie`
     );
     if (res.data.Error) {
       throw new Error("Ошибка!");
