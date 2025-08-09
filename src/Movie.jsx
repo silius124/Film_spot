@@ -18,14 +18,13 @@ function Movie() {
             <img src={movie.Poster} alt="" />
             <div>
               <h2>{movie.Title}</h2>
-
               <p>{movie.Plot}</p>
               <button
                 className="btn add_to_favourite"
                 onClick={() => dispatch(addToFavourite(movie))}
               >
                 Добавить в избранное
-              </button>
+              </button>{" "}
               <button
                 className="btn delete_from_favourite"
                 onClick={() => dispatch(deleteFromFavourite(movie))}
@@ -44,9 +43,11 @@ function Movie() {
               <label htmlFor="">Год выпуска: </label>
               <span>{movie.Year}</span>
               <label htmlFor="">Рейтинги: </label>
-              {movie.Ratings.map((rat) => (
+              {movie.Ratings.map((rat, i) => (
                 <>
-                  <label htmlFor="">{rat.Source}</label>
+                  <label key={i} htmlFor="">
+                    {rat.Source}
+                  </label>
                   <span>{rat.Value}</span>
                 </>
               ))}
@@ -56,6 +57,7 @@ function Movie() {
           </div>
         </>
       )}
+      {status === "failed" && <p>Такого не найдено</p>}
     </div>
   );
 }

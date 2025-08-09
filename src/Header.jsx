@@ -1,19 +1,22 @@
 import { useDispatch, useSelector } from "react-redux";
 import { clearMovieList, getMovies } from "./store/slicers/MovieSlice";
+import { useState } from "react";
 
 function Header({ changeFilter }) {
   const dispatch = useDispatch();
   const filters = useSelector((state) => state.movies.filters);
+  const [title, setTitle] = useState("");
   function handleChangeInp(inp) {
+    setTitle(inp.split("").length === 0 ? null : inp);
     setTimeout(
       () =>
         dispatch(
           getMovies({
-            title: inp.split("").length === 0 ? null : inp,
+            title,
             index: "1",
           })
         ),
-      500
+      1500
     );
     dispatch(clearMovieList());
   }
@@ -37,7 +40,15 @@ function Header({ changeFilter }) {
             {filter}
           </option>
         ))}
-      </select>
+      </select>{" "}
+      <button
+        className="btn"
+        onClick={() => {
+          dispatch(getMovies({ title, index: 1 }));
+        }}
+      >
+        Поиск
+      </button>
     </header>
   );
 }
