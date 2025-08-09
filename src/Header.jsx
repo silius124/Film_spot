@@ -16,7 +16,7 @@ function Header({ changeFilter }) {
             index: "1",
           })
         ),
-      1500
+      2500
     );
     dispatch(clearMovieList());
   }
