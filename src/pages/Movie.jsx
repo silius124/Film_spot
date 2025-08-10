@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addToFavourite,
   deleteFromFavourite,
-} from "./store/slicers/MovieSlice";
+} from "../store/slicers/MovieSlice";
 
 function Movie() {
   const dispatch = useDispatch();

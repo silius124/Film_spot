@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { clearMovieList, getMovies } from "./store/slicers/MovieSlice";
+import { clearMovieList, getMovies } from "../store/slicers/MovieSlice";
 import { useState } from "react";
 
 function Header({ changeFilter }) {
@@ -8,16 +8,6 @@ function Header({ changeFilter }) {
   const [title, setTitle] = useState("");
   function handleChangeInp(inp) {
     setTitle(inp.split("").length === 0 ? null : inp);
-    setTimeout(
-      () =>
-        dispatch(
-          getMovies({
-            title,
-            index: "1",
-          })
-        ),
-      2500
-    );
     dispatch(clearMovieList());
   }
   return (

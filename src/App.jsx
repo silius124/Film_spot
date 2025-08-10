@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import Movies from "./Movies";
-import Header from "./Header";
+import Movies from "./components/Movies";
+import Header from "./components/Header";
 
 function App() {
   const status = useSelector((state) => state.movies.status);

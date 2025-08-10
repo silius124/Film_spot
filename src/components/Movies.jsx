@@ -3,7 +3,7 @@ import {
   addToFavourite,
   deleteFromFavourite,
   getMovie,
-} from "./store/slicers/MovieSlice";
+} from "../store/slicers/MovieSlice";
 import { useNavigate } from "react-router-dom";
 
 function Movies({ filter }) {
