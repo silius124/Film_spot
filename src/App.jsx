@@ -8,12 +8,12 @@ function App() {
   const [filter, setFilter] = useState("all");
 
   return (
-    <>
+    <div className="main-content">
       <Header changeFilter={setFilter} />
       {status === "loading" && <p>Загрузка...</p>}
       {status === "successed" && <Movies filter={filter} />}
       {status === "failed" && <p>Такого фильма не найдено</p>}
-    </>
+    </div>
   );
 }
 

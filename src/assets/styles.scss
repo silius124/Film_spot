@@ -9,14 +9,17 @@ body {
   color: white;
 }
 
-#app {
+#root {
   max-width: 1280px;
   margin: 0 auto;
 }
-
+.main-content {
+  margin: 0 3rem;
+}
 .movie-list {
   width: 100%;
   display: flex;
+  padding: 0;
   flex-wrap: wrap;
   img {
     width: 15rem;
