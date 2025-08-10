@@ -1,0 +1,14 @@
+.input_movie {
+  border-radius: 8px;
+  outline: none;
+  width: 50rem;
+  padding: 0.5rem;
+  background-color: #4a4a4a;
+  color: white;
+  border: 2px solid white;
+  transition: border-color 0.3s cubic-bezier(0, 0.97, 0.92, 1.01);
+
+  &:focus {
+    border-color: green;
+  }
+}

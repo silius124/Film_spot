@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import store from "./store/store.js";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Movie from "./pages/Movie.jsx";
+import "./assets/styles.scss";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

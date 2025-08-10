@@ -29,16 +29,18 @@ function Movies({ filter }) {
           movies.map((movie) => {
             return (
               <li
+                className="card"
                 key={movie.imdbID}
                 onClick={() => handleClickToMovie(movie.Title)}
               >
-                <div className="card">
-                  <img src={movie.Poster} alt={movie.title} />
-                  {movie.Title} был выпущен в {movie.Year}{" "}
-                  <button onClick={() => handleClickAddFavourite(movie)}>
-                    В избранное
-                  </button>
-                </div>
+                <img src={movie.Poster} alt={movie.title} />
+                {movie.Title} был выпущен в {movie.Year}{" "}
+                <button
+                  onClick={() => handleClickAddFavourite(movie)}
+                  className="btn-box-green"
+                >
+                  В избранное
+                </button>
               </li>
             );
           })}

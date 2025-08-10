@@ -20,13 +20,13 @@ function Movie() {
               <h2>{movie.Title}</h2>
               <p>{movie.Plot}</p>
               <button
-                className="btn add_to_favourite"
+                className="btn-box-green"
                 onClick={() => dispatch(addToFavourite(movie))}
               >
                 Добавить в избранное
               </button>{" "}
               <button
-                className="btn delete_from_favourite"
+                className="btn-box-red"
                 onClick={() => dispatch(deleteFromFavourite(movie))}
               >
                 Удалить из избранного
