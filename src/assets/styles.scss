@@ -1,6 +1,8 @@
 @use "./components/buttons";
 @use "./components/block";
 @use "./components/header";
+@use "./components/normolize";
+@use "./components/image";
 @use "./components/inputs";
 @use "./components/card";
 body {
@@ -13,8 +15,11 @@ body {
   max-width: 1280px;
   margin: 0 auto;
 }
+ul {
+  list-style: none;
+}
 .main-content {
-  margin: 0 3rem;
+  width: 100%;
 }
 .movie-list {
   width: 100%;

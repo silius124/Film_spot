@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div className="main-content">
-      <Header changeFilter={setFilter} />
+      <Header setFilter={setFilter} />
       {status === "loading" && <p>Загрузка...</p>}
       {status === "successed" && <Movies filter={filter} />}
       {status === "failed" && <p>Такого фильма не найдено</p>}

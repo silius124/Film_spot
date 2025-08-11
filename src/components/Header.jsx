@@ -21,25 +21,35 @@ function Header({ setFilter }) {
           id="title_input"
           className="input_movie"
         />
-        {filters.map((filter, index) => (
-          <button
-            type="button"
-            className="btn-box-green"
-            key={index}
-            onClick={() => setFilter(filter)}
-          >
-            {filter}
-          </button>
-        ))}
-
-        <button
-          className="btn-green"
-          onClick={() => {
-            dispatch(getMovies({ title, index: 1 }));
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            width: "100%",
           }}
         >
-          Поиск
-        </button>
+          <div>
+            {filters.map((filter, index) => (
+              <button
+                type="button"
+                className="btn-box-green"
+                key={index}
+                onClick={() => setFilter(filter)}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
+
+          <button
+            className="btn-green"
+            onClick={() => {
+              dispatch(getMovies({ title, index: 1 }));
+            }}
+          >
+            Поиск
+          </button>
+        </div>
       </div>
     </header>
   );

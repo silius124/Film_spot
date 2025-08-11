@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addToFavourite,
+  // addToFavourite,
   deleteFromFavourite,
   getMovie,
 } from "../store/slicers/MovieSlice";
@@ -12,9 +12,9 @@ function Movies({ filter }) {
   const movies = useSelector((store) => store.movies.moviesList);
   const status = useSelector((store) => store.movies.status);
   const favourites = useSelector((store) => store.movies.favourites);
-  function handleClickAddFavourite(movie) {
-    dispatch(addToFavourite(movie));
-  }
+  // function handleClickAddFavourite(movie) {
+  //   dispatch(addToFavourite(movie));
+  // }
   function handleClickDeleteFavourite(movie) {
     dispatch(deleteFromFavourite(movie));
   }
@@ -32,15 +32,28 @@ function Movies({ filter }) {
                 className="card"
                 key={movie.imdbID}
                 onClick={() => handleClickToMovie(movie.Title)}
+                style={{
+                  backgroundImage: `url(${movie.Poster})`,
+                  position: "relative",
+                }}
               >
-                <img src={movie.Poster} alt={movie.title} />
-                {movie.Title} был выпущен в {movie.Year}{" "}
-                <button
-                  onClick={() => handleClickAddFavourite(movie)}
-                  className="btn-box-green"
+                <div
+                  style={{
+                    backgroundColor: "gray",
+                    bottom: "0",
+                    position: "absolute",
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "start",
+                    gap: "1rem",
+                    padding: "1rem 0",
+                    opacity: ".8",
+                  }}
                 >
-                  В избранное
-                </button>
+                  <div>{movie.Title} </div>
+                  <div>{movie.Year}</div>
+                </div>
               </li>
             );
           })}
@@ -49,15 +62,17 @@ function Movies({ filter }) {
             return (
               <li
                 key={movie.imdbID}
+                className="card"
+                style={{ backgroundImage: `url(${movie.Poster})` }}
                 onClick={() => handleClickToMovie(movie.Title)}
               >
-                <div className="card">
-                  <img src={movie.Poster} alt={movie.title} />
-                  {movie.Title} был выпущен в {movie.Year}{" "}
-                  <button onClick={() => handleClickDeleteFavourite(movie)}>
-                    Удалить из избранного
-                  </button>
-                </div>
+                {movie.Title} был выпущен в {movie.Year}{" "}
+                <button
+                  className="btn-box-red"
+                  onClick={() => handleClickDeleteFavourite(movie)}
+                >
+                  Удалить из избранного
+                </button>
               </li>
             );
           })}
