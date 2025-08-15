@@ -23,61 +23,59 @@ function Movies({ filter }) {
     if (status === "successed") navigate("/movie-info");
   }
   return (
-    <>
-      <ul className="movie-list">
-        {filter === "all" &&
-          movies.map((movie) => {
-            return (
-              <li
-                className="card"
-                key={movie.imdbID}
-                onClick={() => handleClickToMovie(movie.Title)}
+    <ul className="movie-list">
+      {filter === "all" &&
+        movies.map((movie) => {
+          return (
+            <li
+              className="card"
+              key={movie.imdbID}
+              onClick={() => handleClickToMovie(movie.Title)}
+              style={{
+                backgroundImage: `url(${movie.Poster})`,
+                position: "relative",
+              }}
+            >
+              <div
                 style={{
-                  backgroundImage: `url(${movie.Poster})`,
-                  position: "relative",
+                  backgroundColor: "gray",
+                  bottom: "0",
+                  position: "absolute",
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "start",
+                  gap: "1rem",
+                  padding: "1rem 0",
+                  opacity: ".8",
                 }}
               >
-                <div
-                  style={{
-                    backgroundColor: "gray",
-                    bottom: "0",
-                    position: "absolute",
-                    width: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "start",
-                    gap: "1rem",
-                    padding: "1rem 0",
-                    opacity: ".8",
-                  }}
-                >
-                  <div>{movie.Title} </div>
-                  <div>{movie.Year}</div>
-                </div>
-              </li>
-            );
-          })}
-        {filter === "favourite" &&
-          favourites.map((movie) => {
-            return (
-              <li
-                key={movie.imdbID}
-                className="card"
-                style={{ backgroundImage: `url(${movie.Poster})` }}
-                onClick={() => handleClickToMovie(movie.Title)}
+                <div>{movie.Title} </div>
+                <div>{movie.Year}</div>
+              </div>
+            </li>
+          );
+        })}
+      {filter === "favourite" &&
+        favourites.map((movie) => {
+          return (
+            <li
+              key={movie.imdbID}
+              className="card"
+              style={{ backgroundImage: `url(${movie.Poster})` }}
+              onClick={() => handleClickToMovie(movie.Title)}
+            >
+              {movie.Title} был выпущен в {movie.Year}{" "}
+              <button
+                className="btn-box-red"
+                onClick={() => handleClickDeleteFavourite(movie)}
               >
-                {movie.Title} был выпущен в {movie.Year}{" "}
-                <button
-                  className="btn-box-red"
-                  onClick={() => handleClickDeleteFavourite(movie)}
-                >
-                  Удалить из избранного
-                </button>
-              </li>
-            );
-          })}
-      </ul>
-    </>
+                Удалить из избранного
+              </button>
+            </li>
+          );
+        })}
+    </ul>
   );
 }
 

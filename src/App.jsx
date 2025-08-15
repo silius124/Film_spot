@@ -8,7 +8,7 @@ function App() {
   const [filter, setFilter] = useState("all");
 
   return (
-    <div className="container">
+    <div className="main-content">
       <Header setFilter={setFilter} />
       {status === "loading" && <p>Загрузка...</p>}
       {status === "successed" && <Movies filter={filter} />}
