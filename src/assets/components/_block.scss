@@ -1,11 +1,27 @@
 .block {
-  width: 100%;
-  align-items: center;
-  justify-content: center;
   display: flex;
+  align-items: center;
   gap: 2rem;
 
-  @media (max-width: 500px) {
+  &--column {
     flex-direction: column;
+    align-items: stretch;
+  }
+
+  &__filters {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  &__button-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
