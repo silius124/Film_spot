@@ -34,7 +34,7 @@ function Movie() {
                 <button
                   className="btn-box-red"
                   style={{
-                    backgroundImage: 'url("./src/assets/favourite.svg")',
+                    backgroundImage: 'url("./public/favourite.svg")',
                   }}
                   onClick={() => dispatch(deleteFromFavourite(movie))}
                 ></button>
@@ -43,7 +43,7 @@ function Movie() {
                 <button
                   className="btn-box-green"
                   style={{
-                    backgroundImage: 'url("./src/assets/favourite.svg")',
+                    backgroundImage: 'url("./public/favourite.svg")',
                   }}
                   onClick={() => dispatch(addToFavourite(movie))}
                 ></button>
