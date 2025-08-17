@@ -68,7 +68,10 @@ function Movies({ filter }) {
               {movie.Title} был выпущен в {movie.Year}{" "}
               <button
                 className="btn-box-red"
-                onClick={() => handleClickDeleteFavourite(movie)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleClickDeleteFavourite(movie);
+                }}
               >
                 Удалить из избранного
               </button>
