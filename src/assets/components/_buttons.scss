@@ -48,6 +48,7 @@ $size: 2.5rem;
     @include button(red, $box: true);
     background-repeat: no-repeat;
     background-size: 50% 50%;
+    background-position: center;
     &:hover {
       @include button(transparent, true);
     }

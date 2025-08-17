@@ -28,9 +28,7 @@ function Movie() {
                 className="btn-box-red"
                 style={{ backgroundImage: 'url("src/assets/favourite.svg")' }}
                 onClick={() => dispatch(deleteFromFavourite(movie))}
-              >
-                Удалить из избранного
-              </button>
+              ></button>
             </div>
           </div>
           <div className="main_content">

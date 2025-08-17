@@ -4,10 +4,11 @@ import axios from "axios";
 export const getMovies = createAsyncThunk(
   "movie/getMovies",
   async ({ title, index }) => {
-    if (title === null) {
-      throw new Error("Пустое значение");
-    }
     try {
+      if (title === null) {
+        throw new Error("Пустое значение");
+      }
+
       const res = await axios.get(
         `https://www.omdbapi.com/?apikey=6007e8be&s=${title}&type=movie&page=${index}`
       );
