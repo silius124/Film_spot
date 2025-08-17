@@ -21,12 +21,12 @@ function Movie() {
               <p>{movie.Plot}</p>
               <button
                 className="btn-box-green"
+                style={{ backgroundImage: 'url("src/assets/favourite.svg")' }}
                 onClick={() => dispatch(addToFavourite(movie))}
-              >
-                Добавить в избранное
-              </button>{" "}
+              ></button>{" "}
               <button
                 className="btn-box-red"
+                style={{ backgroundImage: 'url("src/assets/favourite.svg")' }}
                 onClick={() => dispatch(deleteFromFavourite(movie))}
               >
                 Удалить из избранного

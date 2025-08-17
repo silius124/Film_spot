@@ -7,14 +7,17 @@ export const getMovies = createAsyncThunk(
     if (title === null) {
       throw new Error("Пустое значение");
     }
-    const res = await axios.get(
-      `https://www.omdbapi.com/?apikey=6007e8be&s=${title}&type=movie&page=${index}`
-    );
-    console.log(index);
-    if (res.data.Error) {
-      throw new Error("Ошибка!");
+    try {
+      const res = await axios.get(
+        `https://www.omdbapi.com/?apikey=6007e8be&s=${title}&type=movie&page=${index}`
+      );
+      if (res.data.Error) {
+        throw new Error("Ошибка!");
+      }
+      return res.data;
+    } catch (e) {
+      console.log(e);
     }
-    return res.data;
   }
 );
 
@@ -42,7 +45,11 @@ const movieSlice = createSlice({
     recent: [],
     favourites: [],
     status: "idle",
-    filters: ["all", "favourite", "recent"],
+    filters: [
+      { name: "all", icon: null },
+      { name: "favourite", icon: "src/assets/favourite.svg" },
+      { name: "recent", icon: "src/assets/recent.svg" },
+    ],
   },
   reducers: {
     addToFavourite(state, action) {

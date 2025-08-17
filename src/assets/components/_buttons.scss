@@ -37,12 +37,17 @@ $size: 2.5rem;
 
   &-box-green {
     @include button(green, $box: true);
+    background-repeat: no-repeat;
+    background-size: 50% 50%;
+    background-position: center;
     &:hover {
       @include button(transparent, true);
     }
   }
   &-box-red {
     @include button(red, $box: true);
+    background-repeat: no-repeat;
+    background-size: 50% 50%;
     &:hover {
       @include button(transparent, true);
     }

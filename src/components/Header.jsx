@@ -22,7 +22,6 @@ function Header({ setFilter }) {
         <h1 className="header__title">Film Spot</h1>
 
         <div className="header__search">
-          {/* Поле ввода */}
           <input
             type="text"
             onChange={(e) => handleChangeInp(e.target.value)}
@@ -33,7 +32,6 @@ function Header({ setFilter }) {
             placeholder="Введите название фильма..."
           />
 
-          {/* Фильтры и кнопка поиска */}
           <div className="filters-wrapper">
             <div className="filters">
               {filters.map((filter, index) => (
@@ -41,9 +39,10 @@ function Header({ setFilter }) {
                   type="button"
                   className="btn-box-green"
                   key={index}
+                  style={{ backgroundImage: `url(${filter.icon})` }}
                   onClick={() => setFilter(filter)}
                 >
-                  {filter}
+                  {filter.name === "all" ? filter.name : ""}
                 </button>
               ))}
             </div>
