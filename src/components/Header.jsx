@@ -40,7 +40,7 @@ function Header({ setFilter }) {
                   className="btn-box-green"
                   key={index}
                   style={{ backgroundImage: `url(${filter.icon})` }}
-                  onClick={() => setFilter(filter)}
+                  onClick={() => setFilter(filter.name)}
                 >
                   {filter.name === "all" ? filter.name : ""}
                 </button>
