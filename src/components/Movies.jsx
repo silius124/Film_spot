@@ -62,7 +62,7 @@ function Movies({ filter }) {
               {movie.Title} был выпущен в {movie.Year}{" "}
               <button
                 className="btn-box-red"
-                style={{ backgroundImage: 'url("./public/favourite.svg")' }}
+                style={{ backgroundImage: 'url("./icons/favourite.svg")' }}
                 onClick={(e) => {
                   e.stopPropagation();
                   handleClickDeleteFavourite(movie);
