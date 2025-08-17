@@ -48,8 +48,8 @@ const movieSlice = createSlice({
     status: "idle",
     filters: [
       { name: "all", icon: null },
-      { name: "favourite", icon: "src/assets/favourite.svg" },
-      { name: "recent", icon: "src/assets/recent.svg" },
+      { name: "favourite", icon: "./src/assets/favourite.svg" },
+      { name: "recent", icon: "./src/assets/recent.svg" },
     ],
   },
   reducers: {

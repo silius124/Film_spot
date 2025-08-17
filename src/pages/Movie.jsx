@@ -33,14 +33,18 @@ function Movie() {
               {isFavourite && (
                 <button
                   className="btn-box-red"
-                  style={{ backgroundImage: 'url("src/assets/favourite.svg")' }}
+                  style={{
+                    backgroundImage: 'url("./src/assets/favourite.svg")',
+                  }}
                   onClick={() => dispatch(deleteFromFavourite(movie))}
                 ></button>
               )}
               {!isFavourite && (
                 <button
                   className="btn-box-green"
-                  style={{ backgroundImage: 'url("src/assets/favourite.svg")' }}
+                  style={{
+                    backgroundImage: 'url("./src/assets/favourite.svg")',
+                  }}
                   onClick={() => dispatch(addToFavourite(movie))}
                 ></button>
               )}
