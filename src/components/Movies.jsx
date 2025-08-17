@@ -1,9 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  // addToFavourite,
-  deleteFromFavourite,
-  getMovie,
-} from "../store/slicers/MovieSlice";
+import { deleteFromFavourite, getMovie } from "../store/slicers/MovieSlice";
 import { useNavigate } from "react-router-dom";
 
 function Movies({ filter }) {
@@ -12,9 +8,7 @@ function Movies({ filter }) {
   const movies = useSelector((store) => store.movies.moviesList);
   const status = useSelector((store) => store.movies.status);
   const favourites = useSelector((store) => store.movies.favourites);
-  // function handleClickAddFavourite(movie) {
-  //   dispatch(addToFavourite(movie));
-  // }
+
   function handleClickDeleteFavourite(movie) {
     dispatch(deleteFromFavourite(movie));
   }
@@ -68,13 +62,12 @@ function Movies({ filter }) {
               {movie.Title} был выпущен в {movie.Year}{" "}
               <button
                 className="btn-box-red"
+                style={{ backgroundImage: 'url("src/assets/favourite.svg")' }}
                 onClick={(e) => {
                   e.stopPropagation();
                   handleClickDeleteFavourite(movie);
                 }}
-              >
-                Удалить из избранного
-              </button>
+              ></button>
             </li>
           );
         })}
