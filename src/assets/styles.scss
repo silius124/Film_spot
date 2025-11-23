@@ -38,11 +38,16 @@ ul {
 
 .movie-list {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto auto auto;
   gap: 1rem;
 
   img {
     width: 15rem;
+  }
+}
+@media (max-width: 1200px) {
+  .movie-list {
+    grid-template-columns: auto auto auto;
   }
 }
 @media (max-width: 992px) {
