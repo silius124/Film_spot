@@ -1,20 +1,46 @@
 import { useDispatch, useSelector } from "react-redux";
 import { clearMovieList, getMovies } from "../store/slicers/MovieSlice";
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+
+function useDebounce(callback, delay) {
+  const timeoutId = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutId.current) {
+        clearTimeout(timeoutId.current);
+      }
+    };
+  }, []);
+
+  return useCallback(
+    (...args) => {
+      if (timeoutId.current) clearTimeout(timeoutId.current);
+
+      timeoutId.current = setTimeout(() => {
+        callback(...args);
+      }, delay);
+    },
+    [callback, delay]
+  );
+}
 
 function Header({ setFilter }) {
   const dispatch = useDispatch();
   const filters = useSelector((state) => state.movies.filters);
-  const [title, setTitle] = useState("");
+  //const [title, setTitle] = useState("");
+  const [searchTitle, setSearchTitle] = useState("");
 
   function handleChangeInp(inp) {
-    setTitle(inp.trim().length === 0 ? null : inp);
-    dispatch(clearMovieList());
+    setSearchTitle(inp.trim());
+    handleSearch(inp.trim());
   }
 
-  function handleSearch() {
-    dispatch(getMovies({ title, index: 1 }));
-  }
+  const handleSearch = useDebounce((inp) => {
+    dispatch(clearMovieList());
+    dispatch(getMovies({ title: inp, index: 1 }));
+    console.log("handleSearch: " + inp);
+  }, 500);
 
   return (
     <header className="header" data-testid="header">
@@ -24,8 +50,10 @@ function Header({ setFilter }) {
         <div className="header__search">
           <input
             type="text"
-            onChange={(e) => handleChangeInp(e.target.value)}
-            autoComplete="off"
+            value={searchTitle}
+            onChange={(e) => {
+              handleChangeInp(e.target.value);
+            }}
             name="title_input"
             id="title_input"
             className="input-movie"
@@ -47,9 +75,9 @@ function Header({ setFilter }) {
               ))}
             </div>
 
-            <button className="btn-green" onClick={handleSearch}>
+            {/* <button className="btn-green" onClick={(e) => handleSearch(e)}>
               Поиск
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

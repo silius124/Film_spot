@@ -80,8 +80,12 @@ const movieSlice = createSlice({
         state.status = "loading";
       })
       .addCase(getMovies.fulfilled, (state, action) => {
-        state.status = "successed";
-        state.moviesList = [...action.payload.Search];
+        if (action.payload) {
+          state.status = "successed";
+          state.moviesList = [...action.payload.Search];
+        } else {
+          state.status = "failed";
+        }
       })
       .addCase(getMovies.rejected, (state) => {
         state.status = "failed";

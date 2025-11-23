@@ -6,7 +6,6 @@ import Header from "./components/Header";
 function App() {
   const status = useSelector((state) => state.movies.status);
   const [filter, setFilter] = useState("all");
-
   return (
     <div className="main-content">
       <Header setFilter={setFilter} />
