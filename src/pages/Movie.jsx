@@ -1,8 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addToFavourite,
-  deleteFromFavourite,
-} from "../store/slicers/MovieSlice";
+import { toggleToFavourite } from "../store/slicers/MovieSlice";
 import { useEffect, useState } from "react";
 
 function Movie() {
@@ -18,7 +15,9 @@ function Movie() {
         ? true
         : false
     );
-  }, [favourites]);
+  }, [favourites, movie.imdbID]);
+
+  useEffect(() => {}, []);
 
   return (
     <div className="main">
@@ -30,24 +29,14 @@ function Movie() {
             <div>
               <h2>{movie.Title}</h2>
               <p>{movie.Plot}</p>
-              {isFavourite && (
-                <button
-                  className="btn-box-red"
-                  style={{
-                    backgroundImage: 'url("./icons/favourite.svg")',
-                  }}
-                  onClick={() => dispatch(deleteFromFavourite(movie))}
-                ></button>
-              )}
-              {!isFavourite && (
-                <button
-                  className="btn-box-green"
-                  style={{
-                    backgroundImage: 'url("./icons/favourite.svg")',
-                  }}
-                  onClick={() => dispatch(addToFavourite(movie))}
-                ></button>
-              )}
+
+              <button
+                className={`btn-box-${isFavourite ? "red" : "green"}`}
+                style={{
+                  backgroundImage: 'url("./icons/favourite.svg")',
+                }}
+                onClick={() => dispatch(toggleToFavourite(movie))}
+              ></button>
             </div>
           </div>
           <div className="main_content">

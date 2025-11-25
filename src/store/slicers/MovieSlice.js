@@ -53,7 +53,7 @@ const movieSlice = createSlice({
     ],
   },
   reducers: {
-    addToFavourite(state, action) {
+    toggleToFavourite(state, action) {
       if (
         state.favourites.findIndex(
           (el) => el.imdbID === action.payload.imdbID
@@ -61,14 +61,16 @@ const movieSlice = createSlice({
       ) {
         state.favourites.push(action.payload);
       } else {
-        return;
+        state.favourites.splice(
+          state.favourites.findIndex(
+            (el) => el.imdbID === action.payload.imdbID
+          ),
+          1
+        );
       }
     },
-    deleteFromFavourite(state, action) {
-      state.favourites.splice(
-        state.favourites.findIndex((el) => el.imdbID === action.payload.imdbID),
-        1
-      );
+    addToRecent(state, action) {
+      return state;
     },
     clearMovieList(state) {
       state.moviesList = [];
@@ -100,6 +102,5 @@ const movieSlice = createSlice({
   },
 });
 
-export const { addToFavourite, deleteFromFavourite, clearMovieList } =
-  movieSlice.actions;
+export const { toggleToFavourite, clearMovieList } = movieSlice.actions;
 export default movieSlice.reducer;
