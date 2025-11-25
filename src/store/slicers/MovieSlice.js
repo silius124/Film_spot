@@ -53,7 +53,7 @@ const movieSlice = createSlice({
     ],
   },
   reducers: {
-    toggleToFavourite(state, action) {
+    toggleFavourite(state, action) {
       if (
         state.favourites.findIndex(
           (el) => el.imdbID === action.payload.imdbID
@@ -70,7 +70,7 @@ const movieSlice = createSlice({
       }
     },
     addToRecent(state, action) {
-      return state;
+      state.recent.push(action.payload);
     },
     clearMovieList(state) {
       state.moviesList = [];
@@ -102,5 +102,6 @@ const movieSlice = createSlice({
   },
 });
 
-export const { toggleToFavourite, clearMovieList } = movieSlice.actions;
+export const { toggleFavourite, clearMovieList, addToRecent } =
+  movieSlice.actions;
 export default movieSlice.reducer;

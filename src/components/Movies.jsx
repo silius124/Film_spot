@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { deleteFromFavourite, getMovie } from "../store/slicers/MovieSlice";
+import { toggleFavourite, getMovie } from "../store/slicers/MovieSlice";
 import { useNavigate } from "react-router-dom";
 
 function Movies({ filter }) {
@@ -10,7 +10,7 @@ function Movies({ filter }) {
   const favourites = useSelector((store) => store.movies.favourites);
 
   function handleClickDeleteFavourite(movie) {
-    dispatch(deleteFromFavourite(movie));
+    dispatch(toggleFavourite(movie));
   }
   function handleClickToMovie(title) {
     dispatch(getMovie({ title }));

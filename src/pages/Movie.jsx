@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { toggleToFavourite } from "../store/slicers/MovieSlice";
+import { toggleFavourite, addToRecent } from "../store/slicers/MovieSlice";
 import { useEffect, useState } from "react";
 
 function Movie() {
@@ -17,7 +17,9 @@ function Movie() {
     );
   }, [favourites, movie.imdbID]);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    dispatch(addToRecent(movie));
+  }, []);
 
   return (
     <div className="main">
@@ -35,7 +37,7 @@ function Movie() {
                 style={{
                   backgroundImage: 'url("./icons/favourite.svg")',
                 }}
-                onClick={() => dispatch(toggleToFavourite(movie))}
+                onClick={() => dispatch(toggleFavourite(movie))}
               ></button>
             </div>
           </div>
