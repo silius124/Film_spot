@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { clearMovieList, getMovies } from "../store/slicers/MovieSlice";
+import { clearMovieList, getMovies } from "../../store/slicers/MovieSlice";
 import { useCallback, useEffect, useRef, useState } from "react";
-import ButtonFavourite from "./ButtonFavourite";
-import ButtonFilter from "./ButtonFilter";
+import ButtonFilter from "../ButtonFilter";
+import styles from "./header.module.scss";
 
 function useDebounce(callback, delay) {
   const timeoutId = useRef(null);
@@ -45,11 +45,11 @@ function Header({ setFilter }) {
   }, 500);
 
   return (
-    <header className="header" data-testid="header">
-      <div className="header__inner">
-        <h1 className="header__title">Film Spot</h1>
+    <header className={styles.header} data-testid="header">
+      <div className={styles.header__inner}>
+        <h1 className={styles.header__title}>Film Spot</h1>
 
-        <div className="header__search">
+        <div className={styles.header__search}>
           <input
             type="text"
             value={searchTitle}
@@ -58,12 +58,12 @@ function Header({ setFilter }) {
             }}
             name="title_input"
             id="title_input"
-            className="input-movie"
+            className={styles.input_movie}
             placeholder="Введите название фильма..."
           />
 
-          <div className="filters-wrapper">
-            <div className="filters">
+          <div className={styles.filter_wrapper}>
+            <div className={styles.filters}>
               {filters.map((filter, index) => (
                 <ButtonFilter
                   key={index}

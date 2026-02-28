@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { toggleFavourite, addToRecent } from "../store/slicers/MovieSlice";
+import { toggleFavourite, addToRecent } from "../../store/slicers/MovieSlice";
 import { useEffect, useState } from "react";
-import ButtonFavourite from "../components/ButtonFavourite";
+import ButtonFavourite from "../ButtonFavourite";
+import styles from "./movie.module.scss";
 
 function Movie() {
   const dispatch = useDispatch();
@@ -27,17 +28,21 @@ function Movie() {
       {status === "loading" && <div>Загрузка...</div>}
       {status === "successed" && (
         <div>
-          <div className="head_movie">
+          <div className={styles.head_movie}>
             <img src={movie.Poster} alt="" />
-            <div>
-              <span className="">Название</span>
-              <h2>{movie.Title}</h2>
-              <span>Описание</span>
-              <p>{movie.Plot}</p>
-              <ButtonFavourite
-                isFavourite={isFavourite}
-                callback={() => dispatch(toggleFavourite(movie))}
-              />
+            <div className={styles.title_movie}>
+              <div>
+                <span className={styles.title_movie_span}>Название</span>
+                <h2>{movie.Title}</h2>
+              </div>
+              <div>
+                <span className={styles.title_movie_span}>Описание</span>
+                <p>{movie.Plot}</p>
+                <ButtonFavourite
+                  isFavourite={isFavourite}
+                  callback={() => dispatch(toggleFavourite(movie))}
+                />
+              </div>
             </div>
           </div>
           <div className="main_content">
