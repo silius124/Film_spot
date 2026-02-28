@@ -5,7 +5,7 @@ function ButtonFilter({ name, icon, callback }) {
       style={{
         backgroundImage: `url(${icon})`,
       }}
-      onClick={() => callback}
+      onClick={() => callback()}
     >
       {name}
     </button>

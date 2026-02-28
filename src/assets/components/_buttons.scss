@@ -39,7 +39,7 @@ $size: 2.5rem;
     }
   }
   &-red {
-    @include button(rgb(128, 0, 0));
+    @include button(rgb(128, 0, 0), rgb(170, 0, 0));
     &:hover {
       @include button(transparent, rgb(170, 0, 0), false, true);
     }
@@ -55,12 +55,17 @@ $size: 2.5rem;
     }
   }
   &-box-red {
-    @include button(red, $box: true);
+    @include button(rgb(128, 0, 0), rgb(170, 0, 0), $box: true);
     background-repeat: no-repeat;
     background-size: 50% 50%;
     background-position: center;
     &:hover {
-      @include button(transparent, $colorBorder: red, $box: true, $hover: true);
+      @include button(
+        transparent,
+        $colorBorder: rgb(170, 0, 0),
+        $box: true,
+        $hover: true
+      );
     }
   }
 }

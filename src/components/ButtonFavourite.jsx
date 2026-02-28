@@ -5,7 +5,7 @@ function ButtonFavourite({ isFavourite, callback }) {
       style={{
         backgroundImage: 'url("./icons/favourite.svg")',
       }}
-      onClick={() => callback}
+      onClick={() => callback()}
     ></button>
   );
 }
