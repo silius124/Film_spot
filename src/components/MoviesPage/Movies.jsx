@@ -7,8 +7,9 @@ function Movies({ filter }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const movies = useSelector((store) => store.movies.moviesList);
-  const status = useSelector((store) => store.movies.status);
   const favourites = useSelector((store) => store.movies.favourites);
+  const recent = useSelector((store) => store.movies.recent);
+  const status = useSelector((store) => store.movies.status);
 
   function handleClickDeleteFavourite(movie) {
     dispatch(toggleFavourite(movie));
@@ -33,6 +34,15 @@ function Movies({ filter }) {
         })}
       {filter === "favourite" &&
         favourites.map((movie) => {
+          return (
+            <CardMovie
+              movie={movie}
+              handleClick={() => handleClickToMovie(movie.Title)}
+            />
+          );
+        })}
+      {filter === "recent" &&
+        recent.map((movie) => {
           return (
             <CardMovie
               movie={movie}

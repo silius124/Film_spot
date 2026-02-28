@@ -10,7 +10,7 @@ export const getMovies = createAsyncThunk(
       }
 
       const res = await axios.get(
-        `https://www.omdbapi.com/?apikey=6007e8be&s=${title}&type=movie&page=${index}`
+        `https://www.omdbapi.com/?apikey=6007e8be&s=${title}&type=movie&page=${index}`,
       );
       if (res.data.Error) {
         throw new Error("Ошибка!");
@@ -19,7 +19,7 @@ export const getMovies = createAsyncThunk(
     } catch (e) {
       console.log(e);
     }
-  }
+  },
 );
 
 export const getMovie = createAsyncThunk(
@@ -29,13 +29,13 @@ export const getMovie = createAsyncThunk(
       throw new Error("Пустое значение");
     }
     const res = await axios.get(
-      `https://www.omdbapi.com/?apikey=6007e8be&t=${title}&type=movie`
+      `https://www.omdbapi.com/?apikey=6007e8be&t=${title}&type=movie`,
     );
     if (res.data.Error) {
       throw new Error("Ошибка!");
     }
     return res.data;
-  }
+  },
 );
 
 const movieSlice = createSlice({
@@ -56,21 +56,29 @@ const movieSlice = createSlice({
     toggleFavourite(state, action) {
       if (
         state.favourites.findIndex(
-          (el) => el.imdbID === action.payload.imdbID
+          (el) => el.imdbID === action.payload.imdbID,
         ) < 0
       ) {
         state.favourites.push(action.payload);
       } else {
         state.favourites.splice(
           state.favourites.findIndex(
-            (el) => el.imdbID === action.payload.imdbID
+            (el) => el.imdbID === action.payload.imdbID,
           ),
-          1
+          1,
         );
       }
     },
     addToRecent(state, action) {
-      state.recent.push(action.payload);
+      if (
+        state.recent.findIndex(
+          (movie) => movie.imdbID === action.payload.imdbID,
+        ) < 0
+      ) {
+        state.recent.push(action.payload);
+      } else {
+        return;
+      }
     },
     clearMovieList(state) {
       state.moviesList = [];

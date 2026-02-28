@@ -20,8 +20,8 @@ function Movie() {
   }, [favourites, movie.imdbID]);
 
   useEffect(() => {
-    dispatch(addToRecent(movie));
-  }, []);
+    if (movie.imdbID) dispatch(addToRecent(movie));
+  }, [movie.imdbID]);
 
   return (
     <div className="main">
