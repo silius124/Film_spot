@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { clearMovieList, getMovies } from "../store/slicers/MovieSlice";
 import { useCallback, useEffect, useRef, useState } from "react";
+import ButtonFavourite from "./ButtonFavourite";
+import ButtonFilter from "./ButtonFilter";
 
 function useDebounce(callback, delay) {
   const timeoutId = useRef(null);
@@ -21,7 +23,7 @@ function useDebounce(callback, delay) {
         callback(...args);
       }, delay);
     },
-    [callback, delay]
+    [callback, delay],
   );
 }
 
@@ -63,15 +65,12 @@ function Header({ setFilter }) {
           <div className="filters-wrapper">
             <div className="filters">
               {filters.map((filter, index) => (
-                <button
-                  type="button"
-                  className="btn-box-green"
+                <ButtonFilter
                   key={index}
-                  style={{ backgroundImage: `url(${filter.icon})` }}
-                  onClick={() => setFilter(filter.name)}
-                >
-                  {filter.name === "all" ? filter.name : ""}
-                </button>
+                  name={filter.name === "all" ? filter.name : ""}
+                  icon={filter.icon}
+                  callback={() => setFilter(filter.name)}
+                />
               ))}
             </div>
 

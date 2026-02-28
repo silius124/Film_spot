@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { toggleFavourite, addToRecent } from "../store/slicers/MovieSlice";
 import { useEffect, useState } from "react";
+import ButtonFavourite from "../components/ButtonFavourite";
 
 function Movie() {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ function Movie() {
     setIsFavourite(
       favourites.findIndex((el) => el.imdbID === movie.imdbID) >= 0
         ? true
-        : false
+        : false,
     );
   }, [favourites, movie.imdbID]);
 
@@ -25,20 +26,18 @@ function Movie() {
     <div className="main">
       {status === "loading" && <div>Загрузка...</div>}
       {status === "successed" && (
-        <>
+        <div>
           <div className="head_movie">
             <img src={movie.Poster} alt="" />
             <div>
+              <span className="">Название</span>
               <h2>{movie.Title}</h2>
+              <span>Описание</span>
               <p>{movie.Plot}</p>
-
-              <button
-                className={`btn-box-${isFavourite ? "red" : "green"}`}
-                style={{
-                  backgroundImage: 'url("./icons/favourite.svg")',
-                }}
-                onClick={() => dispatch(toggleFavourite(movie))}
-              ></button>
+              <ButtonFavourite
+                isFavourite={isFavourite}
+                callback={() => dispatch(toggleFavourite(movie))}
+              />
             </div>
           </div>
           <div className="main_content">
@@ -63,7 +62,7 @@ function Movie() {
               <span>{movie.Actors}</span>
             </div>
           </div>
-        </>
+        </div>
       )}
       {status === "failed" && <p>Такого не найдено</p>}
     </div>
