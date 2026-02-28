@@ -71,10 +71,6 @@ function Header({ setFilter }) {
                 />
               ))}
             </div>
-
-            {/* <button className="btn-green" onClick={(e) => handleSearch(e)}>
-              Поиск
-            </button> */}
           </div>
         </div>
       </div>
