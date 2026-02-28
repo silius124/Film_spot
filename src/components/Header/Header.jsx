@@ -30,7 +30,6 @@ function useDebounce(callback, delay) {
 function Header({ setFilter }) {
   const dispatch = useDispatch();
   const filters = useSelector((state) => state.movies.filters);
-  //const [title, setTitle] = useState("");
   const [searchTitle, setSearchTitle] = useState("");
 
   function handleChangeInp(inp) {
@@ -41,7 +40,6 @@ function Header({ setFilter }) {
   const handleSearch = useDebounce((inp) => {
     dispatch(clearMovieList());
     dispatch(getMovies({ title: inp, index: 1 }));
-    console.log("handleSearch: " + inp);
   }, 500);
 
   return (
