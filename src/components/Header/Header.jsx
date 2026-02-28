@@ -3,6 +3,7 @@ import { clearMovieList, getMovies } from "../../store/slicers/MovieSlice";
 import { useCallback, useEffect, useRef, useState } from "react";
 import ButtonFilter from "../ButtonFilter";
 import styles from "./header.module.scss";
+import Input from "../Input/Input";
 
 function useDebounce(callback, delay) {
   const timeoutId = useRef(null);
@@ -48,19 +49,11 @@ function Header({ setFilter }) {
         <h1 className={styles.header__title}>Film Spot</h1>
 
         <div className={styles.header__search}>
-          <input
-            type="text"
-            value={searchTitle}
-            onChange={(e) => {
-              handleChangeInp(e.target.value);
-            }}
-            name="title_input"
-            id="title_input"
-            className={styles.input_movie}
-            placeholder="Введите название фильма..."
+          <Input
+            searchTitle={searchTitle}
+            handleChange={(e) => handleChangeInp(e)}
           />
-
-          <div className={styles.filter_wrapper}>
+          <div className={styles.filters_wrapper}>
             <div className={styles.filters}>
               {filters.map((filter, index) => (
                 <ButtonFilter

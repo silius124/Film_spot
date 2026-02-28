@@ -1,5 +1,10 @@
 $size: 2.5rem;
-@mixin button($color: green, $colorBorder: green, $box: false, $hover: false) {
+@mixin button(
+  $color: green,
+  $colorBorder: rgb(0, 170, 0),
+  $box: false,
+  $hover: false
+) {
   @if ($box) {
     width: $size;
     height: $size;
@@ -7,12 +12,12 @@ $size: 2.5rem;
     width: 7rem;
     height: 2.5rem;
   }
-  @if ($hover) {
-    border: 1px $colorBorder solid;
-  } @else {
-    border: none;
-  }
-
+  // @if ($hover) {
+  //   border: 1px $colorBorder solid;
+  // } @else {
+  //   border: none;
+  // }
+  border: 1px $colorBorder solid;
   padding: 1rem;
   border-radius: 5px;
 
@@ -27,16 +32,16 @@ $size: 2.5rem;
 
 .btn {
   &-green {
-    @include button(green);
+    @include button(green, rgb(0, 170, 0));
 
     &:hover {
-      @include button(transparent, green, false, true);
+      @include button(transparent, rgb(0, 170, 0), false, true);
     }
   }
   &-red {
-    @include button(red);
+    @include button(rgb(128, 0, 0));
     &:hover {
-      @include button(transparent, red, false, true);
+      @include button(transparent, rgb(170, 0, 0), false, true);
     }
   }
 

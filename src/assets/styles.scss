@@ -1,13 +1,9 @@
 // Подключение модулей
 @use "./components/container";
-@use "./components/header";
 @use "./components/buttons";
 @use "./components/block";
 @use "./components/normolize";
 @use "./components/image";
-@use "./components/inputs";
-@use "./components/card";
-@use "./components/movie";
 
 // Базовые стили
 body {

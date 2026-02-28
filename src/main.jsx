@@ -4,7 +4,7 @@ import App from "./App.jsx";
 import { Provider } from "react-redux";
 import store from "./store/store.js";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Movie from "./pages/Movie.jsx";
+import Movie from "./components/MoviePage/Movie.jsx";
 import "./assets/styles.scss";
 
 createRoot(document.getElementById("root")).render(
@@ -17,5 +17,5 @@ createRoot(document.getElementById("root")).render(
         </Routes>
       </BrowserRouter>
     </Provider>
-  </StrictMode>
+  </StrictMode>,
 );

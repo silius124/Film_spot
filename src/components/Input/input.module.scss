@@ -1,4 +1,4 @@
-.input-movie {
+.input_movie {
   border-radius: 8px;
   outline: none;
   max-width: 50rem;
@@ -7,6 +7,7 @@
   color: white;
   border: 2px solid white;
   transition: border-color 0.3s cubic-bezier(0, 0.97, 0.92, 1.01);
+  flex: 2;
 
   &:focus {
     border-color: green;
