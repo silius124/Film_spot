@@ -25,27 +25,11 @@ function Movies({ filter }) {
               className="card"
               key={movie.imdbID}
               onClick={() => handleClickToMovie(movie.Title)}
-              style={{
-                backgroundImage: `url(${movie.Poster})`,
-                position: "relative",
-              }}
             >
-              <div
-                style={{
-                  backgroundColor: "gray",
-                  bottom: "0",
-                  position: "absolute",
-                  width: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "start",
-                  gap: "1rem",
-                  padding: "1rem 0",
-                  opacity: ".8",
-                }}
-              >
-                <div>{movie.Title} </div>
-                <div>{movie.Year}</div>
+              <img src={movie.Poster} alt="poster" className="poster" />
+              <div className="title">
+                <h3>{movie.Title} </h3>
+                <span>{movie.Year}</span>
               </div>
             </li>
           );
