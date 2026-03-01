@@ -28,8 +28,13 @@ export const getMovie = createAsyncThunk(
     if (title === null) {
       throw new Error("Пустое значение");
     }
+    let finalTitle = title.replaceAll(" ", "+");
+    finalTitle = finalTitle.replaceAll("&", "%26");
+    console.log(
+      `title: ${finalTitle} https://www.omdbapi.com/?apikey=6007e8be&t=${finalTitle}&type=movie`,
+    );
     const res = await axios.get(
-      `https://www.omdbapi.com/?apikey=6007e8be&t=${title}&type=movie`,
+      `https://www.omdbapi.com/?apikey=6007e8be&t=${finalTitle}&type=movie`,
     );
     if (res.data.Error) {
       throw new Error("Ошибка!");
@@ -75,7 +80,7 @@ const movieSlice = createSlice({
           (movie) => movie.imdbID === action.payload.imdbID,
         ) < 0
       ) {
-        state.recent.push(action.payload);
+        state.recent.unshift(action.payload);
       } else {
         return;
       }
