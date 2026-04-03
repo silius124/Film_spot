@@ -33,15 +33,19 @@ $size: 2.5rem;
 .btn {
   &-green {
     @include button(green, rgb(0, 170, 0));
-
-    &:hover {
-      @include button(transparent, rgb(0, 170, 0), false, true);
+    @media (hover: hover) {
+      &:hover {
+        @include button(transparent, rgb(0, 170, 0), false, true);
+      }
     }
   }
   &-red {
     @include button(rgb(128, 0, 0), rgb(170, 0, 0));
-    &:hover {
-      @include button(transparent, rgb(170, 0, 0), false, true);
+
+    @media (hover: hover) {
+      &:hover {
+        @include button(transparent, rgb(170, 0, 0), false, true);
+      }
     }
   }
 
@@ -50,8 +54,10 @@ $size: 2.5rem;
     background-repeat: no-repeat;
     background-size: 50% 50%;
     background-position: center;
-    &:hover {
-      @include button(transparent, green, true, true);
+    @media (hover: hover) {
+      &:hover {
+        @include button(transparent, green, true, true);
+      }
     }
   }
   &-box-red {
@@ -59,13 +65,16 @@ $size: 2.5rem;
     background-repeat: no-repeat;
     background-size: 50% 50%;
     background-position: center;
-    &:hover {
-      @include button(
-        transparent,
-        $colorBorder: rgb(170, 0, 0),
-        $box: true,
-        $hover: true
-      );
+
+    @media (hover: hover) {
+      &:hover {
+        @include button(
+          transparent,
+          $colorBorder: rgb(170, 0, 0),
+          $box: true,
+          $hover: true
+        );
+      }
     }
   }
 }
