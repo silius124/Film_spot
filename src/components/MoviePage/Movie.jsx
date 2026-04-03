@@ -29,7 +29,10 @@ function Movie() {
       {status === "successed" && (
         <div>
           <div className={styles.head_movie}>
-            <img src={movie.Poster} alt="poster" className={styles.poster} />
+            <div className={styles.poster_wrapper}>
+              <img src={movie.Poster} alt="poster" className={styles.poster} />
+            </div>
+
             <div className={styles.title_movie}>
               <div>
                 <span className={styles.title_movie_span}>Название</span>
