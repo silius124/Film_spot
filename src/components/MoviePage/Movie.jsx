@@ -24,12 +24,12 @@ function Movie() {
   }, [movie.imdbID]);
 
   return (
-    <div className="main">
+    <div className={styles.main}>
       {status === "loading" && <div>Загрузка...</div>}
       {status === "successed" && (
         <div>
           <div className={styles.head_movie}>
-            <img src={movie.Poster} alt="" />
+            <img src={movie.Poster} alt="poster" className={styles.poster} />
             <div className={styles.title_movie}>
               <div>
                 <span className={styles.title_movie_span}>Название</span>
@@ -45,26 +45,35 @@ function Movie() {
               </div>
             </div>
           </div>
-          <div className="main_content">
+          <div className={styles.main_content}>
             <h3>О фильме</h3>
-            <div>
-              <label htmlFor="">Жанр: </label>
-              <span>{movie.Genre}</span>
-              <label htmlFor="">Страна: </label>
-              <span>{movie.Country}</span>
-              <label htmlFor="">Год выпуска: </label>
-              <span>{movie.Year}</span>
-              <label htmlFor="">Рейтинги: </label>
-              {movie.Ratings.map((rat, i) => (
-                <>
-                  <label key={i} htmlFor="">
-                    {rat.Source}
-                  </label>
-                  <span>{rat.Value}</span>
-                </>
-              ))}
-              <label htmlFor="">Звезды: </label>
-              <span>{movie.Actors}</span>
+            <div className={styles.meta}>
+              <div className={styles.meta_wrapper}>
+                <h4>Жанр: </h4>
+                <p>{movie.Genre}</p>
+              </div>
+              <div className={styles.meta_wrapper}>
+                <h4>Страна: </h4>
+                <p>{movie.Country}</p>
+              </div>
+              <div className={styles.meta_wrapper}>
+                <h4>Год выпуска: </h4>
+                <p>{movie.Year}</p>
+              </div>
+
+              <div className={styles.meta_wrapper}>
+                <h4>Рейтинги: </h4>
+                {movie.Ratings.map((rat, i) => (
+                  <div key={i} className={styles.ratings}>
+                    <p>{rat.Source}:</p>
+                    <p>{rat.Value}</p>
+                  </div>
+                ))}
+              </div>
+              <div className={styles.meta_wrapper}>
+                <h4>Звезды: </h4>
+                <p>{movie.Actors}</p>
+              </div>
             </div>
           </div>
         </div>
