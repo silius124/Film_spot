@@ -34,8 +34,10 @@ ul {
 }
 
 .movie-list {
+  width: 100%;
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  justify-content: center;
   gap: 1rem;
 
   img {
