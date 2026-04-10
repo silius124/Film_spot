@@ -11,10 +11,6 @@ function Movies({ filter }) {
   const recent = useSelector((store) => store.movies.recent);
   const status = useSelector((store) => store.movies.status);
 
-  function handleClickDeleteFavourite(movie) {
-    dispatch(toggleFavourite(movie));
-  }
-
   function handleClickToMovie(title) {
     dispatch(getMovie({ title }));
     if (status === "successed") navigate("/movie-info");
