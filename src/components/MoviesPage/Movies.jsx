@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { toggleFavourite, getMovie } from "../../store/slicers/MovieSlice";
+import { getMovie } from "../../store/slicers/MovieSlice";
 import { useNavigate } from "react-router-dom";
 import styles from "./movies.module.scss";
 
@@ -14,7 +14,6 @@ function Movies({ filter }) {
   function handleClickToMovie(title) {
     dispatch(getMovie({ title }));
     if (status === "successed") navigate("/movie-info");
-    console.log(status);
   }
 
   return (

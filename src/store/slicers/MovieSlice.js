@@ -30,9 +30,6 @@ export const getMovie = createAsyncThunk(
     }
     let finalTitle = title.replaceAll(" ", "+");
     finalTitle = finalTitle.replaceAll("&", "%26");
-    console.log(
-      `title: ${finalTitle} https://www.omdbapi.com/?apikey=6007e8be&t=${finalTitle}&type=movie`,
-    );
     const res = await axios.get(
       `https://www.omdbapi.com/?apikey=6007e8be&t=${finalTitle}&type=movie`,
     );
